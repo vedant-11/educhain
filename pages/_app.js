@@ -20,9 +20,13 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
+import { useState } from "react";
 
 function MyApp({ Component, pageProps }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
     <div>
       <nav className=" drop-shadow-sm z-50 bg-[#F1F3F5] px-20 h-20 sm:px-2 flex flex-row justify-between items-center fixed w-screen ">
@@ -46,10 +50,13 @@ function MyApp({ Component, pageProps }) {
           <Modal />
         </div>
       </nav>
-
-      <ChakraProvider>
-        <Component {...pageProps} />
-      </ChakraProvider>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <ChakraProvider>
+            <Component {...pageProps} />
+          </ChakraProvider>
+        </Hydrate>
+      </QueryClientProvider>
       <Footer />
     </div>
   );

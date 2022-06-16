@@ -8,22 +8,20 @@ import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 
 import NFTMarketplace from "../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
+import Image from "next/image";
+import { useQuery } from "react-query";
+
+const provider = new ethers.providers.JsonRpcProvider(
+  "https://polygon-mumbai.g.alchemy.com/v2/aHoj3FXdzVxzS_5mVRn6S6MQu8gIW3UZ"
+);
+const contract = new ethers.Contract(
+  marketplaceAddress,
+  NFTMarketplace.abi,
+  provider
+);
 
 export default function Collection() {
-  const [nfts, setNfts] = useState([]);
-  const [loadingState, setLoadingState] = useState("not-loaded");
-  useEffect(() => {
-    loadNFTs();
-  }, []);
   async function loadNFTs() {
-    const provider = new ethers.providers.JsonRpcProvider(
-      "https://polygon-mumbai.g.alchemy.com/v2/aHoj3FXdzVxzS_5mVRn6S6MQu8gIW3UZ"
-    );
-    const contract = new ethers.Contract(
-      marketplaceAddress,
-      NFTMarketplace.abi,
-      provider
-    );
     const data = await contract.fetchMarketItems();
 
     /*
@@ -48,31 +46,27 @@ export default function Collection() {
         return item;
       })
     );
-    setNfts(items);
-    setLoadingState("loaded");
+    return items;
   }
-  async function buyNft(nft) {
-    /* needs the user to sign the transaction, so will use Web3Provider and sign it */
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(
-      marketplaceAddress,
-      NFTMarketplace.abi,
-      signer
+
+  const { data: nfts, isLoading } = useQuery(["NFTs"], loadNFTs, {
+    staleTime: 1000,
+  });
+
+  if (isLoading)
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <h1 className="px-20 py-10 text-black text-xl">Loading...</h1>
+      </div>
     );
 
-    /* user will be prompted to pay the asking proces to complete the transaction */
-    const price = ethers.utils.parseUnits(nft.price.toString(), "ether");
-    const transaction = await contract.createMarketSale(nft.tokenId, {
-      value: price,
-    });
-    await transaction.wait();
-    loadNFTs();
-  }
-  if (loadingState === "loaded" && !nfts.length)
-    return <h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>;
+  if (!nfts?.length)
+    return (
+      <div className="h-screen">
+        <h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>
+      </div>
+    );
+
   return (
     <div>
       <main className="mx-20 min-h-screen ">
