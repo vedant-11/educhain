@@ -125,17 +125,16 @@ export default function CreateItem() {
             className="my-4 hidden"
             onChange={onChange}
           />
-          {fileUrl && (
-            <img className="rounded mt-4" width="350" src={fileUrl} />
-          )}
         </label>
-
-        <button
-          onClick={listNFTForSale}
-          className="bg-bgprimary  w-full h-12  rounded-lg font-medium poppins "
-        >
-          Create Degree NFT
-        </button>
+        {fileUrl && <img className="rounded mt-4" width="350" src={fileUrl} />}
+        <div className="mt-4">
+          <button
+            onClick={listNFTForSale}
+            className="bg-bgprimary w-full h-12 rounded-lg font-medium poppins "
+          >
+            Create Degree NFT
+          </button>
+        </div>
       </div>
     </div>
   );
