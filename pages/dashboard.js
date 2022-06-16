@@ -51,43 +51,53 @@ export default function CreatorDashboard() {
     setLoadingState("loaded");
   }
   if (loadingState === "loaded" && !nfts.length)
-    return <h1 className="py-10 px-20 text-3xl">No NFTs listed</h1>;
+    return <h1 className="py-40 h-screen px-20 text-3xl">No NFTs listed</h1>;
   return (
     <div>
-      <div className="p-4 ">
+      <div className="p-4 h-screen ">
         <h2 className="text-2xl mx-40 mt-40 sm:mx-2 poppins text-3xl text-center">
-          Items Listed
+          Degree Awarded
         </h2>
         <div className="grid grid-cols-4 sm:grid-cols-1 lg:grid-cols-2 mx-40 gap-4 pt-4">
           {nfts.map((nft, i) => (
             <div
               key={i}
-              className="  drop-shadow-md px-4 sm:w-60 rounded-md overflow-hidden bg-white/10 flex flex-col py-4 justify-between items-center "
+              className=" drop-shadow-md px-4 sm:w-60 rounded-md overflow-hidden bg-white flex flex-col py-4 justify-between items-center "
             >
-              <img
-                src={nft.image}
-                className=" object-cover w-full h-80 sm:h-60 rounded-md "
-              />
-              <audio controls src={nft.audio}>
-                Your browser does not support the
-                <code>audio</code> element.
-              </audio>
-              <div>
-                <h1 className="text-center poppins text-medium">{nft.name}</h1>
-                <div className="flex flex-row">
-                  <span className="poppins">
-                    <p className="text-white/50">current price</p>
-                    <p className="text-center">{nft.price} Matic</p>
-                  </span>
+              <div className="flex flex-col bg-white justify-center items-center">
+                <img
+                  src={nft.image}
+                  className=" object-cover z-0 float-left  w-full h-80 rounded-md sm:h-36  "
+                />
+                <div className=" bg-white w-72 flex justify-end mt-2 z-500   ">
+                  <p className=" text-white text-center w-40 rounded-sm bg-gray-300 ">
+                    {nft.price} CGPA
+                  </p>
                 </div>
-                <p className="text-center poppins">{nft.description}</p>
               </div>
-              <div className=" w-full"></div>
+
+              {/* <audio controls className="my-2" src={nft.audio}>
+               Your browser does not support the
+               <code>audio</code> element.
+             </audio> */}
+              <div>
+                <div className="flex flex-row-reverse items-center w-80 justify-around bg-white ">
+                  <p className=" bg-white text-center poppins text-sm">
+                    SRM University
+                  </p>
+                  <p className=" bg-white text-center text-sm w-20  truncate poppins text-medium">
+                    {nft.name}
+                  </p>
+                </div>
+
+                <p className=" bg-white text-left ml-10 poppins">
+                  {nft.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
       </div>
-      <MyAssets />
     </div>
   );
 }

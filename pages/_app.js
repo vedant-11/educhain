@@ -25,15 +25,15 @@ function MyApp({ Component, pageProps }) {
     <div>
       <nav className=" drop-shadow-sm z-50 bg-[#F1F3F5] px-20 h-20 sm:px-2 flex flex-row justify-between items-center fixed w-screen ">
         <Link href="/">
-          <p className="text-4xl font-semibold poppins">BEAT</p>
+          <p className="text-4xl font-semibold poppins">EduChain</p>
         </Link>
         <div className=" poppins font-medium flex flex-row items-center justify-center ">
           <Link href="/collection">
-            <a className="mr-4 text-black ">Collection</a>
+            <a className="mr-4 text-black ">Degree</a>
           </Link>
           {/* <Button colorScheme="blue">Button</Button> */}
           <Link href="/create-nft">
-            <a className="mr-6 text-black">Sell NFT</a>
+            <a className="mr-6 text-black">Create Degree</a>
           </Link>
 
           <Link href="/dashboard">

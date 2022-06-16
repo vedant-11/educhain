@@ -18,7 +18,7 @@ export default function Collection() {
   }, []);
   async function loadNFTs() {
     const provider = new ethers.providers.JsonRpcProvider(
-      "https://polygon-mumbai.g.alchemy.com/v2/Jnq1ivsHJRrCmriUgR73K6vbgl_noDYf"
+      "https://polygon-mumbai.g.alchemy.com/v2/aHoj3FXdzVxzS_5mVRn6S6MQu8gIW3UZ"
     );
     const contract = new ethers.Contract(
       marketplaceAddress,
@@ -76,7 +76,7 @@ export default function Collection() {
     return <h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>;
   return (
     <div>
-      <main className="mx-20 ">
+      <main className="mx-20 min-h-screen ">
         <h1 className="  text-center text-4xl poppins font-medium">
           Collection
         </h1>
@@ -84,7 +84,7 @@ export default function Collection() {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
         <div className="" style={{ maxWidth: "1600px" }}>
-          <div className="grid grid-cols-4 sm:grid-cols-1 gap-4 pt-4">
+          <div className="grid grid-cols-4 mb-20 sm:grid-cols-1 gap-4 pt-4">
             {nfts.map((nft, i) => (
               <div
                 key={i}
@@ -97,16 +97,11 @@ export default function Collection() {
                   />
                   <div className=" bg-white w-72 flex justify-end mt-2 z-500   ">
                     <p className=" text-white text-center w-40 rounded-sm bg-gray-300 ">
-                      {nft.price} Matic
+                      {nft.price} CGPA
                     </p>
                   </div>
                 </div>
-                <AudioPlayer
-                  src={nft.audio}
-                  showJumpControls={false}
-                  customAdditionalControls={[]}
-                  customVolumeControls={[]}
-                />
+
                 {/* <audio controls className="my-2" src={nft.audio}>
                   Your browser does not support the
                   <code>audio</code> element.
@@ -114,24 +109,17 @@ export default function Collection() {
                 <div>
                   <div className="flex flex-row-reverse items-center w-80 justify-around bg-white ">
                     <p className=" bg-white text-center poppins text-sm">
-                      {nft.name}
+                      SRM University
                     </p>
                     <p className=" bg-white text-center text-sm w-20  truncate poppins text-medium">
-                      {nft.seller}
+                      {nft.name}
                     </p>
                   </div>
 
-                  <p className=" bg-white text-center poppins">
+                  <p className=" bg-white text-left ml-10 poppins">
                     {nft.description}
                   </p>
                 </div>
-
-                <button
-                  className="bg-bgprimary  w-full h-10 rounded-lg font-medium poppins "
-                  onClick={() => buyNft(nft)}
-                >
-                  Buy
-                </button>
               </div>
             ))}
           </div>

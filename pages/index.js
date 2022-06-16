@@ -21,7 +21,7 @@ export default function Home() {
   }, []);
   async function loadNFTs() {
     const provider = new ethers.providers.JsonRpcProvider(
-      "https://polygon-mumbai.g.alchemy.com/v2/Jnq1ivsHJRrCmriUgR73K6vbgl_noDYf"
+      "https://polygon-mumbai.g.alchemy.com/v2/aHoj3FXdzVxzS_5mVRn6S6MQu8gIW3UZ"
     );
     const contract = new ethers.Contract(
       marketplaceAddress,
@@ -76,16 +76,39 @@ export default function Home() {
     loadNFTs();
   }
   if (loadingState === "loaded" && !nfts.length)
-    return <h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>;
+    return (
+      <>
+        <section className="w-screen min-h-screen flex flex-row  mx-20 items-center sm:flex-col-reverse sm:flex sm:mx-2 ">
+          <article className="flex flex-col w-1/3 h-full mt-20 sm:mt-20 sm:w-full   ">
+            <h2 className="font-poppins  text-5xl font-extrabold mt-24 sm:mt-16 sm:text-center "></h2>
+            <p className="my-10 text-lg text-black sm:text-center">
+              connecting artists and fans all around the world
+            </p>
+            <div className="sm:flex sm:flex-col sm:w-full sm:justify-center sm:items-center">
+              <Link href="/collection">
+                <button className="bg-bgprimary w-40 h-10 rounded-lg font-medium poppins ">
+                  Explore more
+                </button>
+              </Link>
+            </div>
+          </article>
+
+          <div className="w-1/3 sm:w-full sm:ml-2 mt-40 ml-32  h-3/4">
+            <Image src={hero} layout="responsive" />
+          </div>
+        </section>
+      </>
+    );
   return (
     <>
-      <section className="w-screen flex flex-row  mx-20 items-center sm:flex-col-reverse sm:flex sm:mx-2 ">
+      <section className="w-screen min-h-screen flex flex-row  mx-20 items-center sm:flex-col-reverse sm:flex sm:mx-2 ">
         <article className="flex flex-col w-1/3 h-full mt-20 sm:mt-20 sm:w-full   ">
           <h2 className="font-poppins  text-5xl font-extrabold mt-24 sm:mt-16 sm:text-center ">
-            Voice your stories to the world
+            On-chain degree credentialing platform
           </h2>
           <p className="my-10 text-lg text-black sm:text-center">
-            connecting artists and fans all around the world
+            Platform to store university degrees on blockchain with enhanced
+            security, permissionless verification and security from forgery.
           </p>
           <div className="sm:flex sm:flex-col sm:w-full sm:justify-center sm:items-center">
             <Link href="/collection">
@@ -100,91 +123,6 @@ export default function Home() {
           <Image src={hero} layout="responsive" />
         </div>
       </section>
-      <section className=" flex flex-col justify-center items-center w-screen mt-12">
-        <span>powered by</span>
-        <section className="w-96 mb-12">
-          <Image src={polygon} />
-        </section>
-        <article className="flex flex-col items-center">
-          <h1 className="text-center text-4xl poppins text-bold">About Us</h1>
-          <p className="text-center mt-4 text-lg text-white/50">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </p>
-          <article className="mx-20 flex flex-row w-2/3 h-full justify-around items-center sm:flex-col ">
-            <p className="text-center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Vestibulum congue egestas pellentesque egestas. Volutpat nisl
-              facilisi a nisi convallis odio morbi vitae. Scelerisque sit vitae
-              dolor ut id a iaculis risus convallis. Mauris, enim orci porta
-              tellus sapien purus elementum id osuere. Amet aliquet sed in a a
-              quam in. Malesuada cursus leo ultricies netus sit in aliquet duis.
-              Varius nulla diam, gravida integer augue netus risus. Vel
-              malesuada feugiat sed volutpat erat mattis elementum adipiscing
-              ac. Diam cursus eu mi phasellus sed. Malesuada mauris,
-            </p>
-          </article>
-        </article>
-      </section>
-      <main className="flex flex-col justify-center mx-20 my-20 ">
-        <h1 className="text-center text-4xl poppins font-medium">Collection</h1>
-        <p className="text-center text-white/50 my-10 ">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </p>
-        <div className="" style={{ maxWidth: "1600px" }}>
-          <div className="grid grid-cols-4 sm:grid-cols-1 gap-4 pt-4">
-            {nfts.map((nft, i) => (
-              <div
-                key={i}
-                className=" drop-shadow-md px-4 sm:w-60 rounded-md overflow-hidden bg-white flex flex-col py-4 justify-between items-center "
-              >
-                <div className="flex flex-col bg-white justify-center items-center">
-                  <img
-                    src={nft.image}
-                    className=" object-cover z-0 float-left  w-full h-80 rounded-md sm:h-36  "
-                  />
-                  <div className=" bg-white w-72 flex justify-end mt-2 z-500   ">
-                    <p className=" text-white text-center w-40 rounded-sm bg-gray-300 ">
-                      {nft.price} Matic
-                    </p>
-                  </div>
-                </div>
-                <AudioPlayer
-                  src={nft.audio}
-                  showJumpControls={false}
-                  customAdditionalControls={[]}
-                  customVolumeControls={[]}
-                  // style={{ background: "blue" }}
-                />
-                {/* <audio controls className="my-2" src={nft.audio}>
-                  Your browser does not support the
-                  <code>audio</code> element.
-                </audio> */}
-                <div>
-                  <div className="flex flex-row-reverse items-center w-80 justify-around bg-white ">
-                    <p className=" bg-white text-center poppins text-sm">
-                      {nft.name}
-                    </p>
-                    <p className=" bg-white text-center text-sm w-20  truncate poppins text-medium">
-                      {nft.seller}
-                    </p>
-                  </div>
-
-                  <p className=" bg-white text-center poppins">
-                    {nft.description}
-                  </p>
-                </div>
-
-                <button
-                  className="bg-bgprimary  w-full h-10 rounded-lg font-medium poppins "
-                  onClick={() => buyNft(nft)}
-                >
-                  Buy
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </main>
     </>
   );
 }
