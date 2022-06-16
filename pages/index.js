@@ -79,8 +79,8 @@ export default function Home() {
     return (
       <>
         <section className="w-screen min-h-screen flex flex-row  mx-20 items-center sm:flex-col-reverse sm:flex sm:mx-2 ">
-          <article className="flex flex-col w-1/3 h-full mt-20 sm:mt-20 sm:w-full   ">
-            <h2 className="font-poppins  text-5xl font-extrabold mt-24 sm:mt-16 sm:text-center "></h2>
+          <article className="flex flex-col w-1/3 h-full sm:mt-20 sm:w-full   ">
+            <h2 className="font-poppins  text-5xl font-extrabold mt-20 sm:mt-16 sm:text-center "></h2>
             <p className="my-10 text-lg text-black sm:text-center">
               connecting artists and fans all around the world
             </p>
@@ -93,7 +93,7 @@ export default function Home() {
             </div>
           </article>
 
-          <div className="w-1/3 sm:w-full sm:ml-2 mt-40 ml-32  h-3/4">
+          <div className="w-1/3 sm:w-full sm:ml-2 mt-20 ml-32  h-3/4">
             <Image src={hero} layout="responsive" />
           </div>
         </section>

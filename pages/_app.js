@@ -5,7 +5,9 @@ import { DAppProvider } from "@usedapp/core";
 import ConnectButton from "../components/ConnectButton";
 import { ChakraProvider } from "@chakra-ui/react";
 // import { Button, ButtonGroup } from "@chakra-ui/react";
+import Image from "next/image";
 import Footer from "../components/Footer";
+import logo from "../assets/logo.png";
 
 import { useDisclosure } from "@chakra-ui/react";
 import {
@@ -25,7 +27,9 @@ function MyApp({ Component, pageProps }) {
     <div>
       <nav className=" drop-shadow-sm z-50 bg-[#F1F3F5] px-20 h-20 sm:px-2 flex flex-row justify-between items-center fixed w-screen ">
         <Link href="/">
-          <p className="text-4xl font-semibold poppins">EduChain</p>
+          <span className="w-40">
+            <Image src={logo} alt="" layout="responsive" />
+          </span>
         </Link>
         <div className=" poppins font-medium flex flex-row items-center justify-center ">
           <Link href="/collection">

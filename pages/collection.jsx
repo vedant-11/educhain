@@ -8,7 +8,6 @@ import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 
 import NFTMarketplace from "../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
-import Image from "next/image";
 
 export default function Collection() {
   const [nfts, setNfts] = useState([]);
