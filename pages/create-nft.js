@@ -5,7 +5,12 @@ import { useRouter } from "next/router";
 import Web3Modal from "web3modal";
 import { Select } from "@chakra-ui/react";
 
-const client = ipfsHttpClient("https://ipfs.infura.io:5002/api/v0");
+const client = ipfsHttpClient({
+  host: "ipfs.infura.io",
+  port: 5001,
+  protocol: "https",
+  apiPath: "/ipfs/api/v0",
+});
 
 import { marketplaceAddress } from "../config";
 
