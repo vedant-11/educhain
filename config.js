@@ -1,3 +1,3 @@
 
-  export const marketplaceAddress = "0xdbDF4c76258FC911FEfb43F53eDe14b429815f67"
+  export const marketplaceAddress = "0x359971fE7ef00700204b63273fAAF149C54dF33C"
   
